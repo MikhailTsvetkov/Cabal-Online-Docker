@@ -1,0 +1,51 @@
+# server_id=main
+
+# Example of job definition:
+# .---------------- minute (0 - 59)
+# |  .------------- hour (0 - 23)
+# |  |  .---------- day of month (1 - 31)
+# |  |  |  .------- month (1 - 12) OR jan,feb,mar,apr ...
+# |  |  |  |  .---- day of week (0 - 6) (Sunday=0 or 7) OR sun,mon,tue,wed,thu,fri,sat
+# |  |  |  |  |
+# *  *  *  *  * user-name command to be executed
+
+####	War schedule (uncomment next line)
+#0 0,3,6,9,12,15,18,21 * * * root /bin/bash /usr/bin/war_crond main
+
+#### Special channel (e.g. Forcecalibur, channel 6. Uncomment next lines)
+#00 16 * * 7 root /bin/bash /usr/bin/chan 6 main restart -dt
+#00 17 * * 7 root /bin/bash /usr/bin/chan 6 main stop -dt
+
+####	Set FLAG settings before Flag war (e.g. flag start on Sunday 21:00)
+####	Set settings on 20:55 (uncomment next line)
+#55 20 * * 7 root /bin/bash /usr/bin/set_war_flag main
+
+####	Set DEFAULT settings after Flag war (e.g. flag start on Sunday 21:00)
+####	Set settings on 22:05 (uncomment next line)
+#05 22 * * 7 root /bin/bash /usr/bin/set_war_default main
+
+####	Set flag reward after Flag war (e.g. flag start on Sunday 21:00)
+####	Set nation reward on 22:10. Will be applied at midnight. (uncomment next line)
+#10 22 * * 7 root /bin/bash /usr/bin/set_flag main Server01
+
+####	GlobalMgrSvr autorestart (do not disable)
+25 3 * * * root /bin/bash /usr/bin/gms_restart main
+
+####	Log rotation (1 - server id, 2 - max log size in MB)
+*/1 * * * * root /bin/bash /usr/bin/cabal_log_rotation main 15
+
+####	Remove .core files and .trc (see it in /home/_server_data/sh/scripts/trash_clear.sh) files
+*/5 * * * * root /bin/bash /usr/bin/trash_clear main
+
+####	Shrink db log file
+40 04 * * * root /bin/bash /usr/bin/check_db_log main
+
+####	Check services
+*/1 * * * * root /bin/bash /usr/bin/services_checker main
+
+####	Autobackup
+45 07 * * * root /bin/bash /usr/bin/create_backup_daily main
+45 19 * * * root /bin/bash /usr/bin/create_backup_daily main
+45 21 1 * * root /bin/bash /usr/bin/create_backup_monthly main
+45 21 16 * * root /bin/bash /usr/bin/create_backup_monthly main
+50 */1 * * * root /bin/bash /usr/bin/create_backup_hourly main

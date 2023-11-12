@@ -1,0 +1,30 @@
+#!/bin/bash
+
+echo -e "\033[1;34mAvailable commands:"
+echo -e "\033[1;34m(For the commands below you need to add a server pointer)"
+echo -e "\033[1;34m(For example cabal_start test or channels_stop main)"
+echo -e "\033[1;33mcabal_start|cabal_stop|cabal_restart|cabal_reload|cabal_status\033[0m"
+echo -e "\033[1;32mchannels_start|channels_stop|channels_restart|channels_reload|channels_status\033[0m"
+echo -e "\033[1;35mwar_start|war_stop|war_restart|war_reload|war_status\033[0m"
+echo -e "\033[1;36mtech_start|tech_stop|tech_restart|tech_reload|tech_status\033[0m"
+echo -e "\033[1;33mlogin_start|login_stop|login_restart|login_reload|login_status\033[0m"
+echo -e "\033[1;32meventmgr_start|eventmgr_stop|eventmgr_restart|eventmgr_reload|eventmgr_status\033[0m"
+echo -e "\033[1;36mashop_start|ashop_stop|ashop_restart|ashop_reload|ashop_status\033[0m"
+echo -e "\033[1;33mautobackup main on|off\033[0m"
+echo -e "\033[1;35mcreate_backup|backup_dbs|create_dbs|restore_dbs|shrink_dbs\033[0m"
+echo -e "\033[1;35mcabal_db create|remove|restore|backup|shrink main Server01\033[0m"
+echo -e "\033[1;33mset_war_default|set_war_flag\033[0m"
+echo -e "\033[1;36mserver_create|server_remove\033[0m"
+echo -e "\033[0;32mgms_proxy_reexec|world_set_ip 1.1.1.1|set_sql_access main SA PWD\033[0m"
+
+echo -e "\033[1;34mThe chan command requires 3 arguments (Channel number, server pointer, action)"
+echo -e "\033[1;34m(For example chan 16 test reload)"
+echo -e "\033[1;31mchan 1 main start|stop|restart|reload\033[0m"
+
+echo -e "\033[1;34mContainer management:"
+echo -e "\033[1;33mdocker start|stop|restart cabal_test|cabal_main\033[0m"
+echo -e "\033[1;33mdocker start|stop|restart sql_test|sql_main\033[0m"
+echo -e "\033[1;33mInfo for all containers: docker ps -a\033[0m"
+
+echo -e "\033[0;37mhtop|mc|df -h|tcpdump -nni eth0 icmp|docker ps -s|docker stats\033[0m\n"
+echo ""
