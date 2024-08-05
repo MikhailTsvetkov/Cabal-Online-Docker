@@ -198,7 +198,7 @@ progress_bar stop
 # MSSQL password test
 echo -e "${RED}==> ${YELLOW}MSSQL password test...${NC}"
 
-sql_pw_test=`docker exec sql_${srv_prefix} /opt/mssql-tools/bin/sqlcmd -S 127.0.0.1 -U sa -P ${mssql_pass} -Q "SET NOCOUNT ON;SELECT 1" -h -1 | sed s/' '//g 2>>/dev/null`
+sql_pw_test=`docker exec sql_${srv_prefix} /opt/mssql-tools18/bin/sqlcmd -C -S 127.0.0.1 -U sa -P ${mssql_pass} -Q "SET NOCOUNT ON;SELECT 1" -h -1 | sed s/' '//g 2>>/dev/null`
 if [[ ! "$sql_pw_test" == "1" ]]; then
 	echo -e "\n${BLUE}Failed to set password for MS SQL Server.${NC}"
 	echo -e "${BLUE}Check your password - it may contain unsupported special characters.${NC}"
@@ -227,12 +227,12 @@ USE [master]
 ALTER LOGIN sa WITH NAME=${mssql_user}
 GO
 EOF"
-	mssqlConn="/opt/mssql-tools/bin/sqlcmd -S 127.0.0.1 -U sa -P ${mssql_pass}"
+	mssqlConn="/opt/mssql-tools18/bin/sqlcmd -C -S 127.0.0.1 -U sa -P ${mssql_pass}"
 	docker exec -it sql_${srv_prefix} ${mssqlConn} -i /tmp/sql_user_tmp.sql 1>>/dev/null
 	docker exec -it sql_${srv_prefix} /bin/bash -c "rm -f /tmp/sql_user_tmp.sql"
 	
 	echo -e "${RED}==> ${YELLOW}MSSQL username test...${NC}"
-	sql_user_test=`docker exec sql_${srv_prefix} /opt/mssql-tools/bin/sqlcmd -S 127.0.0.1 -U ${mssql_user} -P ${mssql_pass} -Q "SET NOCOUNT ON;SELECT 1" -h -1 | sed s/' '//g 2>>/dev/null`
+	sql_user_test=`docker exec sql_${srv_prefix} /opt/mssql-tools18/bin/sqlcmd -C -S 127.0.0.1 -U ${mssql_user} -P ${mssql_pass} -Q "SET NOCOUNT ON;SELECT 1" -h -1 | sed s/' '//g 2>>/dev/null`
 	if [[ ! "$sql_user_test" == "1" ]]; then
 		echo -e "\n${BLUE}Failed to set username for MS SQL Server.${NC}"
 		echo -e "${BLUE}Check your username - it may contain unsupported special characters.${NC}\n"

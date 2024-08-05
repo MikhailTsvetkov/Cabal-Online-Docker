@@ -1,9 +1,9 @@
 #!/bin/bash
 
 TMPDIR=`mktemp -d`
-cabal_data_dir='/home/CabalDocker/source/cabal-data'
-server_data_dir='/home/CabalDocker/source/cabal-scripts'
-installator_dir='/home/CabalDocker/installator'
+cabal_data_dir='/home/Cabal-Online-Docker/source/cabal-data'
+server_data_dir='/home/Cabal-Online-Docker/source/cabal-scripts'
+installator_dir='/home/Cabal-Online-Docker/installator'
 
 /bin/bash -c "rm -f $installator_dir/cabal_default_backup.tar.gz"
 

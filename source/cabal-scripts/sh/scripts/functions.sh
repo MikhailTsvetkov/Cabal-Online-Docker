@@ -11,7 +11,7 @@ queriesDir="/home/_server_data/sql/queries/"
 get_mssql_conn() {
 	DBId=`grep -m1 -w "DBId" /home/data_${1}/cabal/AuthDBAgent.ini | cut -d "=" -f 2`
 	DBPwd=`grep -m1 -w "DBPwd" /home/data_${1}/cabal/AuthDBAgent.ini | cut -d "=" -f 2`
-	mssqlConn="/opt/mssql-tools/bin/sqlcmd -S 127.0.0.1 -U $DBId -P $DBPwd"
+	mssqlConn="/opt/mssql-tools18/bin/sqlcmd -C -S 127.0.0.1 -U $DBId -P $DBPwd"
 }
 
 get_db_list() {
